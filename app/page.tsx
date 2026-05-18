@@ -303,8 +303,57 @@ function OurStory() {
             </div>
           </div>
         </div>
+
+        {/* Our Mark — woven into the story */}
+        <div style={{ marginTop: '5rem', paddingTop: '4.5rem', borderTop: `1px solid ${C.border}` }}>
+          <div
+            className="mark-grid"
+            style={{
+              background: `linear-gradient(140deg, ${C.plum} 0%, ${C.plumMid} 100%)`,
+              padding: '3.5rem 4rem',
+              display: 'grid',
+              gridTemplateColumns: '200px 1fr',
+              gap: '4rem',
+              alignItems: 'center',
+            }}
+          >
+            {/* Logo + label */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.75rem' }}>
+              <svg width="80" height="80" viewBox="0 0 42 42" fill="none">
+                <path d="M21 35 C21 35 5 25 5 14.5 C5 9.5 9 6 13.5 6 C16.5 6 19 7.8 21 10.5 C23 7.8 25.5 6 28.5 6 C33 6 37 9.5 37 14.5 C37 25 21 35 21 35Z" fill="rgba(212,132,154,0.18)" stroke={C.rose} strokeWidth="1.4"/>
+                <path d="M7 20 L13 20 L15.5 14 L18 26 L20.5 17 L23 23 L25.5 20 L35 20" stroke={C.roseLight} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+              </svg>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <div style={{ width: 22, height: 1, background: C.rose }} />
+                <span style={{ color: C.rose, fontSize: '0.6rem', fontWeight: 600, letterSpacing: '0.25em', textTransform: 'uppercase' }}>Our Mark</span>
+                <div style={{ width: 22, height: 1, background: C.rose }} />
+              </div>
+            </div>
+
+            {/* Text */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <p style={{ color: C.rose, fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase', lineHeight: 1.6 }}>
+                The Luminary mark is a heart with a pulse line running through it.
+              </p>
+              {[
+                'If you have never been in a NICU, it reads as a simple medical symbol. If you have, it means something entirely different.',
+                'Every NICU parent knows that sound. The tachy alerts. The brady drops. The endless, indefinite hours spent at the bedside. Leaving the hospital at night with your heart still inside, and the moment you return the following morning, bracing yourself before you even open the door.',
+                'We built that line into our mark deliberately. Because this organization was built by someone who sat in that room. And because we never want to forget who we are here for.',
+              ].map((p, i) => (
+                <p key={i} className="font-display" style={{
+                  color: i === 2 ? 'rgba(253,246,249,0.88)' : 'rgba(253,246,249,0.6)',
+                  fontSize: '1.05rem', fontWeight: 300, lineHeight: 1.85, fontStyle: 'italic',
+                }}>{p}</p>
+              ))}
+            </div>
+          </div>
+        </div>
+
       </div>
-      <style>{`.two-col { @media (max-width: 768px) { grid-template-columns: 1fr !important; } }`}</style>
+      <style>{`
+        .two-col { @media (max-width: 768px) { grid-template-columns: 1fr !important; } }
+        @media(max-width:768px){.mark-grid{grid-template-columns:1fr!important;text-align:center;padding:2.5rem 2rem!important}}
+      `}</style>
     </section>
   );
 }
@@ -595,7 +644,7 @@ function KnowYourRights() {
 function Research() {
   const ref = useReveal();
   return (
-    <section id="research" style={{ background: C.plumMid, padding: '7rem 0' }}>
+    <section id="research" style={{ background: `linear-gradient(160deg, #0D0818 0%, #1A0D25 45%, ${C.plumMid} 100%)`, padding: '7rem 0' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
         <div ref={ref} className="section-reveal" style={{ textAlign: 'center', marginBottom: '4.5rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: '1.25rem' }}>
@@ -619,7 +668,7 @@ function Research() {
             { num:'#1', label:'Cause of under-5 mortality (Lancet)' },
             { num:'90%+', label:'Survival rate in high-income countries vs. <10% in low-income (WHO)' },
           ].map((s, i) => (
-            <div key={s.label} style={{ padding: '2.5rem 2rem', borderRight: i < 3 ? '1px solid rgba(212,132,154,0.15)' : 'none', textAlign: 'center' }}>
+            <div key={s.label} style={{ padding: '2.5rem 2rem', borderRight: i < 3 ? '1px solid rgba(212,132,154,0.18)' : 'none', textAlign: 'center', background: 'rgba(212,132,154,0.04)' }}>
               <div className="font-display" style={{ fontSize: 'clamp(2rem, 3.5vw, 3rem)', fontWeight: 300, color: C.rose, lineHeight: 1, marginBottom: '0.6rem' }}>{s.num}</div>
               <div style={{ color: 'rgba(253,246,249,0.4)', fontSize: '0.75rem', lineHeight: 1.5 }}>{s.label}</div>
             </div>
@@ -638,9 +687,9 @@ function Research() {
             { title:'Closing the Survival Gap', desc:'Addressing the catastrophic equity gap — a premature baby in a high-income country has a 90%+ survival rate; in a low-income country, below 10%.', tags:['Health Equity','Global Health'] },
           ].map(a => (
             <div key={a.title}
-              style={{ border: `1px solid rgba(212,132,154,0.15)`, padding: '2.25rem', transition: 'border-color 0.3s ease, background 0.3s ease' }}
-              onMouseOver={e => { (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(212,132,154,0.5)'; (e.currentTarget as HTMLDivElement).style.background = 'rgba(212,132,154,0.04)'; }}
-              onMouseOut={e => { (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(212,132,154,0.15)'; (e.currentTarget as HTMLDivElement).style.background = 'transparent'; }}
+              style={{ border: `1px solid rgba(212,132,154,0.15)`, padding: '2.25rem', transition: 'border-color 0.3s ease, background 0.3s ease, transform 0.3s ease' }}
+              onMouseOver={e => { (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(212,132,154,0.65)'; (e.currentTarget as HTMLDivElement).style.background = 'rgba(212,132,154,0.08)'; (e.currentTarget as HTMLDivElement).style.transform = 'translateY(-3px)'; }}
+              onMouseOut={e => { (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(212,132,154,0.15)'; (e.currentTarget as HTMLDivElement).style.background = 'transparent'; (e.currentTarget as HTMLDivElement).style.transform = 'translateY(0)'; }}
             >
               <h4 className="font-display" style={{ fontSize: '1.25rem', fontWeight: 400, color: C.blush, lineHeight: 1.3, marginBottom: '0.85rem' }}>{a.title}</h4>
               <p style={{ color: 'rgba(253,246,249,0.5)', fontSize: '0.85rem', lineHeight: 1.75, marginBottom: '1.25rem' }}>{a.desc}</p>
@@ -727,6 +776,27 @@ function Contact() {
   const ref = useReveal();
   const [form, setForm] = useState({ name: '', email: '', role: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [sendError, setSendError] = useState(false);
+
+  const handleSubmit = async () => {
+    if (!form.name || !form.email) return;
+    setLoading(true);
+    setSendError(false);
+    try {
+      const res = await fetch(`https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) setSubmitted(true);
+      else setSendError(true);
+    } catch {
+      setSendError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section id="contact" style={{ background: C.plum, padding: '7rem 0' }}>
@@ -790,10 +860,18 @@ function Contact() {
                     onFocus={e => (e.target.style.borderColor = C.rose)} onBlur={e => (e.target.style.borderColor = 'rgba(253,246,249,0.12)')}
                   />
                 </div>
-                <button onClick={() => { if (form.name && form.email) setSubmitted(true); }}
-                  style={{ background: C.rose, color: C.plum, padding: '14px 30px', fontWeight: 700, fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase', border: 'none', cursor: 'pointer', alignSelf: 'flex-start', transition: 'all 0.3s ease' }}
-                  onMouseOver={e => (e.currentTarget.style.background = C.roseLight)} onMouseOut={e => (e.currentTarget.style.background = C.rose)}
-                >Send Message</button>
+                <div>
+                  <button onClick={handleSubmit} disabled={loading}
+                    style={{ background: loading ? C.roseLight : C.rose, color: C.plum, padding: '14px 30px', fontWeight: 700, fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase', border: 'none', cursor: loading ? 'default' : 'pointer', transition: 'all 0.3s ease', opacity: loading ? 0.8 : 1 }}
+                    onMouseOver={e => { if (!loading) e.currentTarget.style.background = C.roseLight; }}
+                    onMouseOut={e => { if (!loading) e.currentTarget.style.background = C.rose; }}
+                  >{loading ? 'Sending…' : 'Send Message'}</button>
+                  {sendError && (
+                    <p style={{ color: '#e8a0a0', fontSize: '0.78rem', marginTop: '0.75rem', lineHeight: 1.5 }}>
+                      Something went wrong. Please try again or email us at hello@luminary.org.
+                    </p>
+                  )}
+                </div>
               </div>
             )}
           </div>
